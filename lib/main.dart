@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 void main() {
@@ -27,6 +28,9 @@ class SensorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 가로모드
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
 
     final centerX = MediaQuery.of(context).size.width / 2 - 50;
     final centerY = MediaQuery.of(context).size.height / 2 - 50;
@@ -48,8 +52,8 @@ class SensorApp extends StatelessWidget {
               print(accelerometerValues);
 
               return Positioned(
-                left: centerX,
-                top: centerY,
+                left: centerX + event.y * 20,
+                top: centerY + event.x * 20,
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Colors.green,
